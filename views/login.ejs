@@ -1,0 +1,51 @@
+<%- include("partials/header")%>
+<style>
+	body{
+		background-color:#30475e;
+	}
+	form{
+		background-color:white;
+		box-sizing: border-box;
+		box-shadow: 4px 4px 10px black;
+		width:60%;
+		padding:30px;
+		margin: 20px auto;
+		border: 2px solid black;
+		max-width: 100%;
+		
+	}
+	p{
+		color:white;
+	}
+	h1{
+		color:white;
+	}
+</style>
+
+<h1 class="text-center text-uppercase"> Login</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 col-sm-12">
+			<form action="/login" method="POST">
+				<div class="form-group">
+                <input type="text" name="username" placeholder="username" class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="password" name="password" placeholder="password" class="form-control">
+				</div>
+	<button type="submit" class="btn btn-success btn-md btn-block">
+		Submit
+	</button>
+</form>
+			<div style="text-align:center;">
+			<p >Do not have an account ?</p>
+<a href="/register" style="color:white;">Sign-Up</a>
+</div>
+			<div class="text-center mt-3">
+				<a href="/forgot" style="color:white;">Forgot Password ?</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include("partials/footer")%>

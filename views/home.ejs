@@ -1,0 +1,80 @@
+<%- include("partials/header")%>
+<style>
+	.container-fluid{
+		height:50%;
+		color:white;
+	}
+	#p{
+		  margin: 0 auto;
+		  	        box-sizing: border-box;
+			font-family: 'Montserrat', sans-serif;
+	
+			align-items: center;
+			justify-content: center;
+			background-color: #1b1919;
+			width: 300px;
+			height:90px;
+			line-height: 100px;
+			text-align: center;
+			border-radius: 50px;
+			color:#00fff2;
+			font-size: 46px;
+			box-shadow: inset 2px 3px 4px rgba(255, 255, 255, 1),
+			             2px 3px 4px rgba(0, 0, 0, .4);     
+
+		}
+</style>
+<div class="container-fluid bg-dark" >
+<h1 class="text-center text-uppercase display-3">Welcome <%=currentUser.username%></h1>
+</div>
+<div class="container-fluid bg-light py-2">
+	<p id="p"></p>
+</div>
+<div class="row">
+		<div class="col-md-4 col-sm-6 ">
+			<ul class="nav flex-column bg-dark my-2 py-4 text-center text-uppercase">
+  <li class="nav-item">
+    <a class="nav-link active" href="/home"  style="display: inline-flex;">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/home/new">New Task</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/home/profile">Profile</a>
+  </li>
+</ul>
+</div>
+<% task.forEach(function(newtask){ %>
+	<%if(currentUser._id.equals(newtask.author.id)){ %>
+	<div class="col-md-4 col-sm-6">
+		<div class="card border-danger bg-white my-2">
+	
+		<div class="card-body">
+	    <h3 class="card-title border-bottom bg-light text-dark text-center text-uppercase"><%= newtask.title %></h3>	
+		<p class="card-text" style="font-size:20px;font-weight:normal;"> <%= newtask.text.substring(0,5) %>.........</p>					
+		<a href="/home/<%= newtask._id%>" class="btn btn-sm btn-outline-dark">read more</a>
+			<p class="d-inline"><%= newtask.time.toUTCString() %></p>
+			</div>
+		  </div>
+	      </div>
+	<% } %>
+			<% }) %>
+			
+</div>
+<script>
+setInterval(function(){
+var time = document.querySelector("#p");
+
+var h = new Date().getHours();
+var m = new Date().getMinutes();
+var s = new Date().getSeconds();
+
+if(h < 12){
+time.innerHTML = h + ":" +  m + ":" + s + " PM";
+}
+if(h > 12){
+time.innerHTML = h + ":" +  m + ":" + s + "AM";
+}
+}, 1000	);
+</script>
+<%- include("partials/footer")%>
